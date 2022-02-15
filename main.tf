@@ -21,19 +21,25 @@ resource "aws_customer_gateway" "default" {
 
 # https://www.terraform.io/docs/providers/aws/r/vpn_connection.html
 resource "aws_vpn_connection" "default" {
-  count                 = local.enabled ? 1 : 0
-  vpn_gateway_id        = join("", aws_vpn_gateway.default.*.id)
-  customer_gateway_id   = join("", aws_customer_gateway.default.*.id)
-  type                  = "ipsec.1"
-  static_routes_only    = var.vpn_connection_static_routes_only
-  tunnel1_inside_cidr   = var.vpn_connection_tunnel1_inside_cidr
-  tunnel2_inside_cidr   = var.vpn_connection_tunnel2_inside_cidr
-  tunnel1_preshared_key = var.vpn_connection_tunnel1_preshared_key
-  tunnel2_preshared_key = var.vpn_connection_tunnel2_preshared_key
-  tunnel1_ike_versions  = var.tunnel1_ike_versions
-  tunnel2_ike_versions  = var.tunnel2_ike_versions
+  count                                = local.enabled ? 1 : 0
+  vpn_gateway_id                       = join("", aws_vpn_gateway.default.*.id)
+  customer_gateway_id                  = join("", aws_customer_gateway.default.*.id)
+  type                                 = "ipsec.1"
+  static_routes_only                   = var.vpn_connection_static_routes_only
+  tunnel1_inside_cidr                  = var.vpn_connection_tunnel1_inside_cidr
+  tunnel2_inside_cidr                  = var.vpn_connection_tunnel2_inside_cidr
+  tunnel1_preshared_key                = var.vpn_connection_tunnel1_preshared_key
+  tunnel2_preshared_key                = var.vpn_connection_tunnel2_preshared_key
+  tunnel1_ike_versions                 = var.tunnel1_ike_versions
+  tunnel2_ike_versions                 = var.tunnel2_ike_versions
+  tunnel1_phase1_dh_group_numbers      = var.tunnel1_phase1_dh_group_numbers
+  tunnel1_phase2_dh_group_numbers      = var.tunnel1_phase2_dh_group_numbers
+  tunnel1_phase1_encryption_algorithms = var.tunnel1_phase1_encryption_algorithms
+  tunnel1_phase1_integrity_algorithms  = var.tunnel1_phase1_integrity_algorithms
+  tunnel1_phase2_encryption_algorithms = var.tunnel1_phase2_encryption_algorithms
+  tunnel1_phase2_integrity_algorithms  = var.tunnel1_phase2_integrity_algorithms
 
-  tags                  = module.this.tags
+  tags = module.this.tags
 }
 
 # https://www.terraform.io/docs/providers/aws/r/vpn_gateway_route_propagation.html

@@ -61,13 +61,62 @@ variable "vpn_connection_tunnel2_preshared_key" {
 }
 
 variable "tunnel1_ike_versions" {
-  type        = string
+  type        = any
   description = "(Optional) The IKE versions that are permitted for the first VPN tunnel. Valid values are ikev1 | ikev2."
   default     = null
 }
 
 variable "tunnel2_ike_versions" {
-  type        = string
+  type        = any
   description = "(Optional) The IKE versions that are permitted for the first VPN tunnel. Valid values are ikev1 | ikev2."
+  default     = null
+}
+
+variable "tunnel1_phase1_dh_group_numbers" {
+  type        = list(string)
+  description = "(Optional) List of one or more Diffie-Hellman group numbers that are permitted for the first VPN tunnel for phase 1 IKE negotiations. Valid values are 2 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24"
+  default     = null
+}
+
+variable "tunnel1_phase2_dh_group_numbers" {
+  type        = list(string)
+  description = "(Optional) List of one or more Diffie-Hellman group numbers that are permitted for the first VPN tunnel for phase 1 IKE negotiations. Valid values are 2 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24"
+  default     = null
+}
+
+variable "tunnel1_phase1_encryption_algorithms" {
+  type        = list(string)
+  description = "(Optional) List of one or more encryption algorithms that are permitted for the first VPN tunnel for phase 1 IKE negotiations. Valid values are AES128 | AES256 | AES128-GCM-16 | AES256-GCM-16"
+  default     = null
+}
+
+variable "tunnel1_phase1_integrity_algorithms" {
+  type        = list(string)
+  description = "(Optional) One or more integrity algorithms that are permitted for the first VPN tunnel for phase 1 IKE negotiations. Valid values are SHA1 | SHA2-256 | SHA2-384 | SHA2-512"
+  default     = null
+}
+
+variable "tunnel1_phase2_encryption_algorithms" {
+  type        = list(string)
+  description = "(Optional) List of one or more encryption algorithms that are permitted for the first VPN tunnel for phase 1 IKE negotiations. Valid values are AES128 | AES256 | AES128-GCM-16 | AES256-GCM-16"
+  default     = null
+}
+
+variable "tunnel1_phase2_integrity_algorithms" {
+  type        = list(string)
+  description = "(Optional) One or more integrity algorithms that are permitted for the first VPN tunnel for phase 1 IKE negotiations. Valid values are SHA1 | SHA2-256 | SHA2-384 | SHA2-512"
+  default     = null
+}
+
+variable "local_ipv4_network_cidr" {
+  type        = string
+  description = " (Optional, Default 0.0.0.0/0) The IPv4 CIDR on the customer gateway (on-premises) side of the VPN connection."
+  default     = null
+}
+
+
+variable "remote_ipv4_network_cidr" {
+  type        = string
+  description = " (Optional, Default 0.0.0.0/0) The IPv4 CIDR on the AWS side of the VPN connection."
   default     = null
 }
