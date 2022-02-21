@@ -38,6 +38,7 @@ resource "aws_vpn_connection" "default" {
   tunnel1_phase1_integrity_algorithms  = var.tunnel1_phase1_integrity_algorithms
   tunnel1_phase2_encryption_algorithms = var.tunnel1_phase2_encryption_algorithms
   tunnel1_phase2_integrity_algorithms  = var.tunnel1_phase2_integrity_algorithms
+  tunnel1_dpd_timeout_action           = var.tunnel1_dpd_timeout_action
 
   tags = module.this.tags
 }

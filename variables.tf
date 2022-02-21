@@ -96,6 +96,12 @@ variable "tunnel1_phase1_integrity_algorithms" {
   default     = null
 }
 
+variable "tunnel1_dpd_timeout_action" {
+  type        = string
+  description = "(Optional) The action to take after DPD timeout occurs for the first VPN tunnel. Specify restart to restart the IKE initiation. Specify clear to end the IKE session. Valid values are clear | none | restart"
+  default     = "clear"
+}
+
 variable "tunnel1_phase2_encryption_algorithms" {
   type        = list(string)
   description = "(Optional) List of one or more encryption algorithms that are permitted for the first VPN tunnel for phase 1 IKE negotiations. Valid values are AES128 | AES256 | AES128-GCM-16 | AES256-GCM-16"
