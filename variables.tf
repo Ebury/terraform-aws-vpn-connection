@@ -102,6 +102,12 @@ variable "tunnel1_dpd_timeout_action" {
   default     = "clear"
 }
 
+variable "tunnel1_startup_action" {
+  type        = string
+  description = "(Optional) The action to take when the establishing the tunnel for the first VPN connection. By default, your customer gateway device must initiate the IKE negotiation and bring up the tunnel. Specify start for AWS to initiate the IKE negotiation. Valid values are add | start."
+  default     = "add"
+}
+
 variable "tunnel1_phase2_encryption_algorithms" {
   type        = list(string)
   description = "(Optional) List of one or more encryption algorithms that are permitted for the first VPN tunnel for phase 1 IKE negotiations. Valid values are AES128 | AES256 | AES128-GCM-16 | AES256-GCM-16"
