@@ -102,6 +102,12 @@ variable "tunnel1_dpd_timeout_action" {
   default     = "clear"
 }
 
+variable "tunnel1_dpd_timeout_seconds" {
+  type        =  number
+  description = "(Optional, Default 30) The number of seconds after which a DPD timeout occurs for the first VPN tunnel. Valid value is equal or higher than 30."
+  default     = "30"
+}
+
 variable "tunnel1_startup_action" {
   type        = string
   description = "(Optional) The action to take when the establishing the tunnel for the first VPN connection. By default, your customer gateway device must initiate the IKE negotiation and bring up the tunnel. Specify start for AWS to initiate the IKE negotiation. Valid values are add | start."
